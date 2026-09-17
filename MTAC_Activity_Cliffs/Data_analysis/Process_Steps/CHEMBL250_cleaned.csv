@@ -1,0 +1,20 @@
+smiles,chembl_id,exp_mean [nM],class
+CCCOc1c(OC)cc([C@H]2CC[C@H](c3cc(OC)c(OC)c(OC)c3)O2)cc1S(C)(=O)=O,CHEMBL1793831,11.65,True
+CCCS(=O)(=O)c1cc(C2CC[C@@H](c3cc(OC)c(OC)c(OC)c3)O2)cc(OC)c1OCCS(=O)(=O)c1ccccc1,CHEMBL293773,1.0,True
+CCCOc1c(OC)cc([C@@H]2CC[C@@H](c3cc(OC)c(OC)c(OC)c3)O2)cc1S(=O)(=O)CCO,CHEMBL299944,4.96,True
+CCCOc1c(OCCCN2CCOCC2)cc([C@@H]2CC[C@@H](c3cc(OC)c(OC)c(OC)c3)O2)cc1S(=O)(=O)CC(C)=O,CHEMBL117413,2.5,True
+CCCOc1c(OCCCn2ccnc2)cc([C@@H]2CC[C@@H](c3cc(OC)c(OC)c(OC)c3)O2)cc1S(=O)(=O)CC(C)=O,CHEMBL407427,3.0,True
+COc1cc([C@H]2CC[C@H](c3cc(OC)c(OC)c(OC)c3)O2)cc(OC)c1OC,CHEMBL297624,103.0,False
+CCCOc1c(OC)cc([C@@H]2CC[C@@H](c3cc(OC)c(OC)c(OC)c3)O2)cc1S(=O)(=O)C[C@@H](C)CCCO,CHEMBL334115,3.28,True
+CCCOc1c(OC)cc([C@@H]2CC[C@@H](c3cc(OC)c(OC)c(OC)c3)O2)cc1S(=O)(=O)C[C@H](C)CCCO,CHEMBL116072,4.49,True
+CCCOc1c(OCCCO)cc([C@@H]2CC[C@@H](c3cc(OC)c(OC)c(OC)c3)O2)cc1S(=O)(=O)CC(C)=O,CHEMBL118105,2.375,True
+COc1ccc([C@H]2O[C@@H](c3ccc(OC)c(OC)c3)[C@H](C)[C@H]2C)cc1OC,CHEMBL112481,1000.0,False
+C#Cc1cccc2c1c(C(=O)c1ccc(Cn3c(C)nc4cnccc43)c(F)c1)cn2C(=O)N(C)C,CHEMBL369225,0.57,True
+CCOC(=O)[C@H](CC(C)C)N(C)S(=O)(=O)c1ccc(Cn2c(C)nc3cnccc32)cc1,CHEMBL322832,0.38,True
+COc1nc(NCCCN2CCOCC2)nc(OC)c1NC(=O)c1ccc(Oc2cc3c(cc2C)CCC3(C)C)o1,CHEMBL210514,1060.0,False
+CN(C(=O)CCCOc1ccc2[nH]c(=O)ccc2c1)C1CCCCC1,CHEMBL34431,1917.0,False
+Clc1ccccc1C(c1ccccc1)(c1ccccc1)n1ccnc1,CHEMBL104,22635.0,False
+CCCCCCCCCCCCCCCCOC[C@H](COP(=O)(O)OCC[N+](C)(C)C)OC(C)=O,CHEMBL1235246,0.15,True
+Cc1cc(F)ccc1[C@H]1C[C@@H](N2CCN3C(=O)CC[C@H]3C2)CCN1C(=O)N(C)[C@H](C)c1cc(C(F)(F)F)cc(C(F)(F)F)c1,CHEMBL2105667,2270.0,False
+Cc1ccc(C(C)(C)O)cc1-c1ccc2c(n1)n(C)c(=O)n2CC(C)(C)C,CHEMBL3765778,2000.0,False
+Cc1nnc2n1-c1sc(CCC(=O)N3CCOCC3)cc1C(c1ccccc1Cl)=NC2,CHEMBL280164,9.9,True

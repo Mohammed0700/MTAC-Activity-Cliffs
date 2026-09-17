@@ -1,0 +1,10 @@
+Metric,Value
+n (Total molecules),377
+nTRAIN (Train molecules),300
+nTEST (Test molecules),77
+Cliff (Total cliff molecules),48
+Cliff TRAIN (Train cliff molecules),38
+Cliff TEST (Test cliff molecules),10
+%cliff (% of cliffs in full dataset),12.73
+%cliffTRAIN (% of cliffs in train set),12.67
+%cliffTEST (% of cliffs in test set),12.99
