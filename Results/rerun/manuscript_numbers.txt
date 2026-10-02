@@ -1,0 +1,65 @@
+Numbers for the manuscript, computed by notebook 05 from Results/rerun/
+
+
+=== Section 2.1 ===
+33 targets: 30 from ChEMBL, 3 from BindingDB
+total curated compounds across the panel (sum of n): 43,800
+protein kinases: 19; GPCRs: 6; PPI: 2
+dataset size 74 (CDK4) to 6,189 (D2 dopamine receptor)
+
+=== Section 2.3 ===
+%Cliff 3.95% (MEK1) to 61.34% (Bcl-2); ratio 15.5-fold
+%Cliff mean 29.1%, median 28.7%, IQR 17.6% to 39.3%
+targets >50%: Bcl-2 (61.34%), Orexin receptor 2 (57.81%)
+targets 40-50%: MDM2 (44.52%), Mu-opioid receptor (43.66%), mTOR (41.65%), ABL1 (41.56%), PDE5 (40.43%)
+targets <10%: JNK1 (8.72%), FAK1 (8.11%), AKT3 (6.20%), MEK1 (3.95%)
+
+=== Section 2.4 ===
+size vs %Cliff: Pearson r = 0.45 (p = 0.009), r^2 = 0.20; Spearman rho = 0.53 (p = 0.002)
+realised test fraction 20.0% to 22.3% (max: PDE5)
+|%Cliff - %Cliff(test)| <= 1 point for 27 of 33 targets; max 2.36 (CDK4)
+
+=== Section 2.5 ===
+descriptor chosen: ECFP 26 (79%), PHYSCHEM 4 (12%), MACCS 2 (6%), WHIM 1 (3%)
+mean cliff RMSE: ECFP-selected 0.797 vs other 0.825
+non-ECFP targets: AKT3 MACCS-GBM (0.743, 0.852); c-Src PHYSCHEM-RF (0.638, 0.821); CDK4 PHYSCHEM-RF (0.659, 0.692); FAK1 PHYSCHEM-KNN (1.018, 1.082); MDM2 MACCS-RF (0.854, 0.987); PKCα PHYSCHEM-GBM (0.978, 0.566); S6K1 WHIM-RF (0.769, 0.776)
+
+=== Section 2.6 ===
+algorithm chosen: SVM 18 (55%), RF 9 (27%), GBM 5 (15%), KNN 1 (3%)
+ECFP+SVM: 18 targets
+three lowest cliff RMSE: PKCα 0.566 (PHYSCHEM-GBM), Orexin receptor 2 0.604 (ECFP-SVM), Bcl-2 0.634 (ECFP-SVM)
+
+=== Section 2.7 ===
+cliff RMSE > global RMSE for 30 of 33 targets
+mean difference 0.099 pKi; mean increase 14.9%, median 13.2%
+Wilcoxon signed-rank W = 48.0, p = 5.6e-06
+global RMSE 0.535-1.018; cliff RMSE 0.566-1.406
+Δ range -42.2% to +122.5%
+largest penalties: MEK1 +122.5% (0.632 vs 1.406, n cliff 1); JNK1 +36.9% (0.774 vs 1.059, n cliff 6); Cathepsin B +32.8% (0.720 vs 0.956, n cliff 28); c-Src +28.8% (0.638 vs 0.821, n cliff 27); Aromatase +27.5% (0.911 vs 1.161, n cliff 19); mTOR +26.9% (0.569 vs 0.722, n cliff 38)
+cliff RMSE <= global: PKCα -42.2% (n cliff 8); ABL1 -6.9% (n cliff 68); CDK2 -3.9% (n cliff 26)
+
+=== Section 2.8 ===
+same winning combination: 9 of 33 (27%)
+mean cliff RMSE: test-selected 0.690, cv-selected 0.803
+selection optimism mean 0.113, median 0.054, max 1.046 (MEK1); min 0.000
+targets with cliff RMSE < global: 14 under test selection vs 3 under CV selection (<= global: 14 vs 3)
+largest apparent reduction: -54.9% (A) vs -42.2% (B)
+strongest apparent successes under A: PKCα 0.427 (-55%) -> 0.566 under B; FAK1 0.697 (-49%) -> 1.082 under B; MEK1 0.360 (-48%) -> 1.406 under B
+optimism vs n cliff (test): Pearson r = -0.36 (p = 0.038); Spearman rho = -0.81 (p = 1.4e-08)
+optimism: 0.238 for 13 targets with <20 cliff test cpds vs 0.032 for 20 with >=20 (Mann-Whitney U = 237, p = 7.4e-05)
+
+=== Section 2.9 ===
+this work vs published: GSK-3β 19.02 vs 18; ABL1 41.56 vs 32; Mu-opioid receptor 43.66 vs 35; 5-HT1A receptor 39.71 vs 35; Thrombin 38.48 vs 36; Orexin receptor 2 57.81 vs 52
+Pearson r = 0.97 (p = 0.002); Spearman rho = 0.55 (p = 0.257); difference +1.0 to +9.6 points
+
+=== Section S6 ===
+All targets: 33 targets; cliff>global 30; mean Δ 14.9%; Wilcoxon p = 5.6e-06; mean optimism 0.113; cliff<global A/B 14/3
+≥ 10 cliff compounds in test set: 25 targets; cliff>global 23; mean Δ 12.3%; Wilcoxon p = 8.2e-06; mean optimism 0.041; cliff<global A/B 7/2
+≥ 20 cliff compounds in test set: 20 targets; cliff>global 18; mean Δ 11.7%; Wilcoxon p = 0.00017; mean optimism 0.032; cliff<global A/B 5/2
+
+=== Section S7 ===
+bootstrap (2000 replicates, seed 42); per-target intervals for 30 targets with >= 5 cliff test compounds
+Δ interval entirely above 0 for 6 targets, entirely below 0 for 1, includes 0 for 23
+panel mean Δ 14.9% (95% CI 8.9 to 20.4%)
+targets with cliff RMSE > global: 30 (95% CI 22 to 29)
+panel mean selection optimism (re-selected in every replicate) 0.140 (95% CI 0.110 to 0.172)

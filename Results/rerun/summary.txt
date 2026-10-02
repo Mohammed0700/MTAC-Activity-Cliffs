@@ -1,0 +1,26 @@
+Selection-protocol comparison
+============================================================
+targets completed                     : 33
+same combination chosen by both       : 9 / 33 (27%)
+
+Cliff RMSE on the test set (lower is better):
+  A  test-selected  mean 0.690  median 0.694
+  B  cv-selected    mean 0.803  median 0.732
+
+Selection optimism (B - A, positive = protocol A was over-optimistic):
+  mean +0.113   median +0.054   max +1.046
+
+Descriptor counts under the corrected protocol:
+  ECFP      26
+  PHYSCHEM  4
+  MACCS     2
+  WHIM      1
+
+Algorithm counts under the corrected protocol:
+  SVM   18
+  RF    9
+  GBM   5
+  KNN   1
+
+Report the protocol-B numbers in Table 2. Quote the optimism figures in
+Section 2.8 and in the Limitations as the measured size of the bias.
