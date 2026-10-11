@@ -1,0 +1,15 @@
+name: mtac-activity-cliffs
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.8.20
+  - rdkit=2022.09.5
+  - numpy=1.24.4
+  - pandas=1.4.4
+  - scipy=1.10.1
+  - scikit-learn=1.2.1
+  - matplotlib=3.7.5
+  - pip
+  - pip:
+      - MoleculeACE==3.0.0

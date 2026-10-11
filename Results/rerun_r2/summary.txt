@@ -1,0 +1,28 @@
+Selection-protocol comparison
+============================================================
+targets completed                     : 33
+training cliff labels used for CV     : train_only
+training cliff labels relabelled      : 1267 of 13064 (in 33 targets)
+same combination chosen by both       : 10 / 33 (30%)
+
+Cliff RMSE on the test set (lower is better):
+  A  test-selected  mean 0.690  median 0.694
+  B  cv-selected    mean 0.809  median 0.742
+
+Selection optimism (B - A, positive = protocol A was over-optimistic):
+  mean +0.119   median +0.043   max +1.047
+
+Descriptor counts under the corrected protocol:
+  ECFP      23
+  MACCS     4
+  PHYSCHEM  4
+  WHIM      2
+
+Algorithm counts under the corrected protocol:
+  SVM   15
+  RF    8
+  GBM   8
+  KNN   2
+
+Report the protocol-B numbers in Table 2. Quote the optimism figures in
+Section 2.8 and in the Limitations as the measured size of the bias.

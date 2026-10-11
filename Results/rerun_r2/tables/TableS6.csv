@@ -1,0 +1,4 @@
+Subset,Targets,Cliff RMSE > global (n),Mean Δ (%),Median Δ (%),Wilcoxon W,Wilcoxon p,Mean selection optimism,Median selection optimism,"Cliff < global, test-selected (n)","Cliff < global, CV-selected (n)"
+All targets,33,26,12.8,7.8,64.0,3.4e-05,0.119,0.043,14,7
+≥ 10 cliff compounds in test set,25,19,9.4,7.8,43.0,0.00071,0.041,0.022,7,6
+≥ 20 cliff compounds in test set,20,16,9.1,7.4,27.0,0.0023,0.019,0.001,5,4

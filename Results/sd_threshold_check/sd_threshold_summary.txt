@@ -1,0 +1,11 @@
+Replicate-SD filter check
+============================================================
+targets checked                          : 33
+curated files reproduced exactly (10 nM) : 33 / 33
+compounds before SD filter               : 50,195
+compounds with >= 2 replicates           : 8,549
+removed by SD >= 10 nM (current)         : 2,111
+
+Switching to a log-scale criterion would change inclusion by:
+  SD(pKi) >= 1.0 : remove 10, add 2,000 (targets affected: 33)
+  SD(pKi) >= 0.5 : remove 100, add 1,491 (targets affected: 33)
