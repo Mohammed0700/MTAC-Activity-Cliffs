@@ -90,6 +90,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import StratifiedKFold, KFold
+from sklearn.preprocessing import StandardScaler
 
 warnings.filterwarnings("ignore")
 
@@ -192,6 +193,7 @@ ALGORITHMS = {"RF": RF, "SVM": SVM, "GBM": GBM, "KNN": KNN}
 # combination is chosen. Do NOT tune these here -- tuning inside the CV loop
 # would be a separate (and larger) change to the methodology.
 # ----------------------------------------------------------------------------
+SCALED_DESCRIPTORS = ("PHYSCHEM", "WHIM")   # the only descriptors MoleculeACE normalises
 SEED = 42
 N_FOLDS = 5
 
@@ -364,13 +366,23 @@ def fit_predict(algo_name, params, x_tr, y_tr, x_ev):
     return np.asarray(model.predict(x_ev))
 
 
-def out_of_fold_predictions(algo_name, params, x, y, cliff, n_folds=N_FOLDS, seed=SEED):
+def out_of_fold_predictions(algo_name, params, x, y, cliff, n_folds=N_FOLDS, seed=SEED,
+                            rescale=False):
     """Pooled out-of-fold predictions over the training set.
 
     Folds are stratified on the activity-cliff label where possible, so that
     every fold contains a comparable proportion of cliff compounds. If a class
     has fewer members than the fold count, stratification is impossible and
     plain KFold is used instead; the caller is warned via the returned flag.
+
+    rescale refits the Gaussian normalisation inside each fold, which is needed
+    for the scaled descriptors (PHYSCHEM and WHIM). MoleculeACE fits its
+    StandardScaler on the whole training set at featurisation time, so without
+    this the normalisation carries information across folds. Because that
+    normalisation is a per-column affine map, refitting a StandardScaler on the
+    already-normalised matrix is exactly equivalent to refitting it on the raw
+    descriptors, so no re-featurisation and no conformer regeneration is needed.
+    The binary descriptors (ECFP, MACCS) are not scaled and are left alone.
     """
     y = np.asarray(y, dtype=float)
     cliff = np.asarray(cliff).astype(int)
@@ -383,8 +395,11 @@ def out_of_fold_predictions(algo_name, params, x, y, cliff, n_folds=N_FOLDS, see
         splitter = KFold(n_splits=n_folds, shuffle=True, random_state=seed)
         folds = splitter.split(np.zeros(len(y)))
     for tr_idx, va_idx in folds:
-        oof[va_idx] = fit_predict(algo_name, params,
-                                  x[tr_idx], y[tr_idx], x[va_idx])
+        x_tr, x_va = x[tr_idx], x[va_idx]
+        if rescale:
+            sc = StandardScaler().fit(x_tr)
+            x_tr, x_va = sc.transform(x_tr), sc.transform(x_va)
+        oof[va_idx] = fit_predict(algo_name, params, x_tr, y[tr_idx], x_va)
     return oof, stratified
 
 
@@ -415,12 +430,11 @@ def run_target(prepared_csv, verbose=True, cliff_labels="train_only", cache_dir=
     preds = []          # REVISION (editor comment 8): every test prediction
     skipped_descriptors = []
     for desc_name, desc in DESCRIPTORS.items():
-        # Featurise once per descriptor. NOTE: MoleculeACE fits the Gaussian
-        # normalisation on the full training set. Strictly, it should be refit
-        # inside each CV fold; leaving it here means a small amount of scaling
-        # information leaks between folds. It affects PHYSCHEM and WHIM only,
-        # is identical for both protocols, and so cannot explain any difference
-        # between them -- but mention it in the Methods if a referee asks.
+        # Featurise once per descriptor. MoleculeACE fits its Gaussian
+        # normalisation on the whole training set, so for the scaled descriptors
+        # the cross-validation refits that normalisation inside each fold; see
+        # out_of_fold_predictions. The test-set transform is the one fitted on
+        # the training set, which is the correct treatment for held-out data.
         try:
             data.featurize_data(desc)
             x_train = np.asarray(data.x_train)
@@ -446,7 +460,8 @@ def run_target(prepared_csv, verbose=True, cliff_labels="train_only", cache_dir=
 
                 # --- protocol B: score on pooled out-of-fold training preds ---
                 oof, stratified = out_of_fold_predictions(
-                    algo_name, params, x_train, y_train, cliff_train)
+                    algo_name, params, x_train, y_train, cliff_train,
+                    rescale=desc_name in SCALED_DESCRIPTORS)
                 rmse_cv = calc_rmse(y_train, oof)
                 cliff_cv = calc_cliff_rmse(
                     y_test_pred=oof, y_test=y_train, cliff_mols_test=cliff_train)
