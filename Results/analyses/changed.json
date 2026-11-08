@@ -1,0 +1,11 @@
+{
+ "n_changed": 1,
+ "sentence": "Substituting the corrected scores changes the combination selected for one of the 33 targets, S6K1, where WHIM with nearest neighbours replaces WHIM with a support vector machine.",
+ "consequence": "With that substitution the cliff-specific test error of S6K1 would move from 0.803 to 0.741 pKi units, the panel mean increase in cliff-specific error would move from 12.8% to 12.6%, the mean selection optimism from 0.119 to 0.117 pKi units, and cliff error would still exceed global error for 26 of the 33 targets.",
+ "mean_delta_before": 12.792020587897508,
+ "mean_delta_after": 12.617514576774044,
+ "mean_optimism_before": 0.11936145044155903,
+ "mean_optimism_after": 0.11747846260014688,
+ "cliff_gt_global_before": 26,
+ "cliff_gt_global_after": 26
+}

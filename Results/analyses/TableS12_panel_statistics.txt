@@ -1,0 +1,11 @@
+targets subsampled                    7
+draws per size                        10
+mean fraction retained at n = 150     16.7%
+range at n = 150                      4.8% to 62.9%
+  D2 dopamine receptor      36.39% ->   1.87% (5.13% retained)
+  Carbonic anhydrase 1      39.30% ->   1.87% (4.75% retained)
+  Mu-opioid receptor        43.66% ->   4.33% (9.93% retained)
+  5-HT1A receptor           39.71% ->   3.13% (7.89% retained)
+  5-HT6 receptor            38.40% ->   5.13% (13.37% retained)
+  5-HT7 receptor            36.57% ->   4.80% (13.13% retained)
+  Bcl-2                     61.34% ->  38.60% (62.93% retained)

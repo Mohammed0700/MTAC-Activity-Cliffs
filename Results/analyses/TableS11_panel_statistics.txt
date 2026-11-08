@@ -1,0 +1,11 @@
+targets with at least 3 test cliff compounds   31
+mean nearest-neighbour similarity, cliff      0.807
+mean nearest-neighbour similarity, non-cliff  0.694
+targets where cliff exceeds non-cliff         31 of 31
+Wilcoxon signed-rank                          p = 9.31e-10
+rho(NN, |error|) negative                     29 of 31 targets
+rho(NN, |error|) significant at 0.05          17 of 31 targets
+mean rho(NN, |error|), all compounds          -0.21
+mean rho(NN, |error|), cliff compounds        -0.12
+cliff-only rho significant                    6 of 27 targets
+share of cliff error in the worst tenth       mean 30.8%, median 30.0%

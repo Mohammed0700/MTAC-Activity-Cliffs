@@ -1,0 +1,17 @@
+affected combinations measured            208
+  PHYSCHEM                                132
+  WHIM                                    76
+uncorrected arm vs deposited full_grid    max difference 1.40e-13
+
+shift in pooled out-of-fold Cliff RMSE
+  median |shift|                          0.0010
+  95th percentile |shift|                 0.0117
+  largest |shift|                         0.0527
+  score worsens                           97 of 208 combinations
+  score improves                          111 of 208 combinations
+
+targets whose selected combination changes 1 of 33
+  S6K1: WHIM-SVM -> WHIM-KNN
+
+smallest gap for an affected combination not measured 0.255
+  that is 4.8 times the largest shift observed anywhere, so those combinations cannot displace a selection
