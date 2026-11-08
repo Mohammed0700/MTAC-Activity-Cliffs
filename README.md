@@ -31,9 +31,13 @@ reported, and how to reproduce them.
 mtac_cliff_api.py                     access to the MoleculeACE cliff routines
 scaler_effect_lib.py                  descriptors, folds and hyperparameters for 13 and 14
 
+<target>_raw.csv                     the extraction, before any curation
+<target>_curated.csv                 after standardisation and replicate aggregation
+<target>_filtered.csv                after the quality filters of Section 4.3
+<target>_final.csv                   the curated endpoint of the per-target pipeline
+Process_Steps/                        per-target intermediates, and a copy of _final
 Data/<target>_prepared.csv            the modelling input: SMILES, Ki in nM, pKi,
                                       MoleculeACE cliff label, train/test split
-Process_Steps/                        intermediate curation files per target
 Results/rerun/                        first complete run, 2 October 2026
 Results/rerun_r2/                     second complete run, 8 October 2026 (reported)
 Results/analyses/                     outputs of scripts 10 to 14
@@ -41,10 +45,20 @@ Results/sd_threshold_check/           output of 08
 environment.yml, requirements.txt     the environment
 ```
 
+The four per-target CSVs at the repository root are the curation trail, one set
+for each of the 33 targets, written in the order `_raw`, `_curated`, `_filtered`,
+`_final` by notebooks 02 and 03. Thrombin is typical: 4,232 records are
+extracted, 3,144 survive standardisation and replicate aggregation, and 2,929
+enter the modelling set once activity-cliff annotation has removed pairs that
+share a fingerprint but differ in canonical SMILES. `Process_Steps/` holds the
+`_cleaned` intermediates and a second copy of each `_final` file, identical to
+the one at the root.
+
 Each `Data/<target>_prepared.csv` has one row per curated compound and the
-columns `smiles`, `exp_mean [nM]`, `y`, `cliff_mol`, `split`. `y` is
-`-log10(Ki in nM)`, which differs from the pKi reported in the manuscript by the
-constant 9 and so gives identical errors and identical rankings.
+columns `smiles`, `exp_mean [nM]`, `y`, `cliff_mol`, `split`. These 33 files are
+the input to every result in the manuscript. `y` is `-log10(Ki in nM)`, which
+differs from the pKi reported in the manuscript by the constant 9 and so gives
+identical errors and identical rankings.
 
 ---
 
